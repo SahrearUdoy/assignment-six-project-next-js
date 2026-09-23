@@ -4,34 +4,38 @@ import Link from "next/link";
 
 export default function LibraryCard({ workoutData }) {
   return (
-    <div className="rounded-2xl border border-gray-700 bg-gray-900 shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
-      {/* image */}
-      <div>
-        <Image
-          src={workoutData.image}
-          width={800}
-          height={600}
-          className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
-        />
+    <section className="contaianer mx-auto my-auto">
+      <div className=" border-2 rounded-3xl border-black bg-gray-800 p-5 ">
+        {/* image */}
+        <div>
+          <Image
+            src={workoutData.image}
+            width={400}
+            height={100}
+            className=""
+          />
+        </div>
+        {/* muscleGroups */}
+        <div className="flex gap-2 mt-4 mb-4">
+          {workoutData.muscleGroups.map((muscle) => (
+            <span className="rounded-full bg-lime-500 px-3 py-1 text-sm text-black">
+              {muscle}
+            </span>
+          ))}
+        </div>
+        {/* name */}
+        <div className="font-bold text-2xl mb-3">{workoutData.name}</div>
+        {/* equipment */}
+        <div className="text-gray-200  mb-4">{workoutData.equipment}</div>
+        {/* duration */}
+        <div className="border-t-2 border-gray-700  flex justify-between items-center">
+          <div className="gap-y-3">{workoutData.duration} min</div>
+          {/* caloriesBurned */}
+          <div>{workoutData.caloriesBurned} kcal</div>
+          {/* rating */}
+          <div>{workoutData.rating}</div>
+        </div>
       </div>
-      {/* muscleGroups */}
-      <div className="flex gap-2">
-        {workoutData.muscleGroups.map((muscle) => (
-          <span className="rounded-full bg-lime-500 px-3 py-1 text-sm text-black">
-            {muscle}
-          </span>
-        ))}
-      </div>
-      {/* name */}
-      <div></div>
-      {/* equipment */}
-      <div></div>
-      {/* duration */}
-      <div></div>
-      {/* caloriesBurned */}
-      <div></div>
-      {/* rating */}
-      <div></div>
-    </div>
+    </section>
   );
 }
