@@ -13,7 +13,7 @@ export default function Navbar() {
 
   return (
     <section>
-      <div className="flex flex-col gap-4 border-b-2 border-gray-700 bg-black p-4 md:flex-row md:items-center md:justify-between">
+      <div className="sticky top-0 z-50 flex flex-col gap-4 border-b-2 border-gray-700 bg-black p-4 md:flex-row md:items-center md:justify-between">
         <Link href="/" className="flex items-center gap-2">
           <Image src={logo} alt="Fitlog logo" />
           <h2 className="font-extrabold">FITLOG</h2>
