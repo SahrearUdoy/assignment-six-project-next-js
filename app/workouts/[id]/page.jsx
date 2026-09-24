@@ -92,7 +92,9 @@ export default async function WorkoutDetailsPage({ params }) {
           <div className="p-3 ml-2">
             <ol className="list-decimal">
               {workoutDetail.instructions.map((instruction) => (
-                <li className="p-2">{instruction}</li>
+                <li key={instruction} className="p-2">
+                  {instruction}
+                </li>
               ))}
             </ol>
           </div>
