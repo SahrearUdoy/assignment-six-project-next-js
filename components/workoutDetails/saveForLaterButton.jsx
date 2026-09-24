@@ -1,13 +1,14 @@
 "use client";
 import { WorkoutContext } from "@/context/WorkoutContext";
 import React, { useContext } from "react";
+import { toast } from "react-toastify";
 
 export default function SaveForLater({ workoutDetail }) {
   const { saved, setSaved } = useContext(WorkoutContext);
 
   function handleSaveForLater() {
     setSaved([...saved, workoutDetail]);
-    alert(`You have read '${workoutDetail.name}'`);
+    toast.success(` '${workoutDetail.name}' Saved for Later!`);
   }
 
   return (

@@ -1,13 +1,14 @@
 "use client";
 import { WorkoutContext } from "@/context/WorkoutContext";
 import React, { useContext } from "react";
+import { toast } from "react-toastify";
 
 export default function AddToTodaysPlan({ workoutDetail }) {
   const { plan, setPlan } = useContext(WorkoutContext);
 
   function handleAddToTodaysPlan() {
     setPlan([...plan, workoutDetail]);
-    alert(`You have read '${workoutDetail.name}'`);
+    toast.success(`'${workoutDetail.name}' Added to Plan!`);
   }
 
   return (

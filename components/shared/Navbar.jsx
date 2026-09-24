@@ -1,32 +1,48 @@
-import React from "react";
-import logo from "@/public/assets/logo.png";
+"use client";
+
+import React, { useContext } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
+import logo from "@/public/assets/logo.png";
+import { WorkoutContext } from "@/context/WorkoutContext";
+
 export default function Navbar() {
+  const { plan, saved } = useContext(WorkoutContext);
+
   return (
-    <section className="">
-      <div className=" flex justify-between  border-b-2 border-gray-700 bg-black p-2 ">
-        {/* Left */}
-        <div className="flex gap-2 items-center">
-          <Image src={logo} />
-          <h2 className="font font-extrabold">FITLOG</h2>
+    <section>
+      <div className="flex justify-between border-b-2 border-gray-700 bg-black p-2">
+        {/* LOGO */}
+        <div className="flex items-center gap-2">
+          <Image src={logo} alt="Fitlog logo" />
+          <h2 className="font-extrabold">FITLOG</h2>
         </div>
 
-        {/* Center */}
-        <div className="flex justify-between gap-2 items-center">
-          <div className="font-semibold border-5 p-1 rounded-2xl border-black bg-green-600 text-lime-900">
+        {/* MIDDLE NAVIGATION */}
+        <div className="flex items-center justify-between gap-4">
+          <div className="font-semibold">
             <Link href="/workouts">Workouts</Link>
           </div>
+
           <div>
             <Link href="/my-plans">My Plan</Link>
           </div>
         </div>
 
-        {/* Right */}
-        <div className="flex justify-between gap-2">
-          <Link href="/Plan">Plan</Link>
-          <Link href="/saved-workouts">Saved</Link>
+        {/* PLAN AND SAVED */}
+        <div className="flex items-center gap-2">
+          <Link href="/my-plans?tab=plan">
+            <div className="rounded-full bg-lime-400 px-4 py-2 text-black">
+              Plan {plan.length}
+            </div>
+          </Link>
+
+          <Link href="/my-plans?tab=saved">
+            <div className="rounded-full border border-gray-600 px-4 py-2 text-white">
+              Saved {saved.length}
+            </div>
+          </Link>
         </div>
       </div>
     </section>
