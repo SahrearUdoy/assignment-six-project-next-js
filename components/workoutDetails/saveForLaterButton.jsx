@@ -2,20 +2,20 @@
 import { WorkoutContext } from "@/context/WorkoutContext";
 import React, { useContext } from "react";
 
-export default function AddToTodaysPlan({ workoutDetail }) {
-  const { plan, setPlan } = useContext(WorkoutContext);
+export default function SaveForLater({ workoutDetail }) {
+  const { saved, setSaved } = useContext(WorkoutContext);
 
-  function handleAddToTodaysPlan() {
-    setPlan([...plan, workoutDetail]);
+  function handleSaveForLater() {
+    setSaved([...saved, workoutDetail]);
     alert(`You have read '${workoutDetail.name}'`);
   }
 
   return (
     <button
       className="btn btn-active btn-success mr-3"
-      onClick={() => handleAddToTodaysPlan()}
+      onClick={() => handleSaveForLater()}
     >
-      Add to todays plan
+      Save For Later
     </button>
   );
 }

@@ -3,5 +3,5 @@ import { WorkoutContext } from "@/context/WorkoutContext";
 import React, { useContext } from "react";
 
 export default function AddedPlan() {
-  const { plan } = useContext(WorkoutContext);
+  const { plan, saved } = useContext(WorkoutContext);
 }

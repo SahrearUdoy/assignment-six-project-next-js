@@ -3,7 +3,7 @@ import React, { createContext, useState } from "react";
 
 export const WorkoutContext = createContext({});
 
-export default function WorkoutPovider({ children }) {
+export default function WorkoutProvider({ children }) {
   const [plan, setPlan] = useState([]);
   const [saved, setSaved] = useState([]);
 
