@@ -25,7 +25,7 @@ export default function Navbar() {
 
         {/* Right */}
         <div className="flex justify-between gap-2">
-          <Link href="/added-plans">Plan</Link>
+          <Link href="/Plan">Plan</Link>
           <Link href="/saved-workouts">Saved</Link>
         </div>
       </div>

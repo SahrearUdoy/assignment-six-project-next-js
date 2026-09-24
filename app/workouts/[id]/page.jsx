@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import AddToTodaysPlan from "@/components/workoutDetails/addToPlan";
 
 const getWorkoutData = async () => {
   const res = await fetch("https://api.abcz.workers.dev/api/fitlog");
@@ -84,9 +85,7 @@ export default async function WorkoutDetailsPage({ params }) {
 
           {/* buttons */}
           <div className=" ">
-            <button className="btn btn-active btn-success mr-3">
-              Add to todays plan
-            </button>
+            <AddToTodaysPlan workoutDetail={workoutDetail}></AddToTodaysPlan>
             <button className="btn btn-soft">Save for later</button>
           </div>
         </div>
