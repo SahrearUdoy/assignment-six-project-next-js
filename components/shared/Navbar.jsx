@@ -14,10 +14,10 @@ export default function Navbar() {
     <section>
       <div className="flex justify-between border-b-2 border-gray-700 bg-black p-2">
         {/* LOGO */}
-        <div className="flex items-center gap-2">
+        <Link href="/" className="flex items-center gap-2">
           <Image src={logo} alt="Fitlog logo" />
           <h2 className="font-extrabold">FITLOG</h2>
-        </div>
+        </Link>
 
         {/* MIDDLE NAVIGATION */}
         <div className="flex items-center justify-between gap-4">

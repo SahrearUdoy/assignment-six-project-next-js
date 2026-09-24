@@ -5,10 +5,18 @@ import { toast } from "react-toastify";
 
 export default function SaveForLater({ workoutDetail }) {
   const { saved, setSaved } = useContext(WorkoutContext);
-
   function handleSaveForLater() {
+    const alreadySaved = saved.some(
+      (workout) => workout.id === workoutDetail.id,
+    );
+
+    if (alreadySaved) {
+      toast.info(`${workoutDetail.name} is already saved`);
+      return;
+    }
+
     setSaved([...saved, workoutDetail]);
-    toast.success(` '${workoutDetail.name}' Saved for Later!`);
+    toast.success(`${workoutDetail.name} Saved for Later!`);
   }
 
   return (

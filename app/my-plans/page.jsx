@@ -3,9 +3,10 @@ import { useSearchParams } from "next/navigation";
 import { WorkoutContext } from "@/context/WorkoutContext";
 import React, { useContext, useState, useEffect } from "react";
 import Link from "next/link";
+import { toast } from "react-toastify";
 
 export default function AddedPlan() {
-  const { plan, saved, setPlan } = useContext(WorkoutContext);
+  const { plan, saved, setPlan, done, setDone } = useContext(WorkoutContext);
 
   const searchParams = useSearchParams();
   const tab = searchParams.get("tab");
@@ -32,10 +33,19 @@ export default function AddedPlan() {
   );
 
   function removeWorkout(id) {
+    const workout = plan.find((workout) => workout.id === id);
+
     const remainingWorkout = plan.filter((workout) => workout.id !== id);
+
     setPlan(remainingWorkout);
+
+    toast.success(`${workout.name} removed from today's plan`);
   }
 
+  function markAsDone(workout) {
+    setDone([...done, workout]);
+    toast.success(`${workout.name} marked as donee`);
+  }
   let workouts = activeTab === "plan" ? plan : saved;
 
   if (sortBy === "duration") {
@@ -148,9 +158,21 @@ export default function AddedPlan() {
                 </button>
               </Link>
 
-              <button className="bg-lime-400 text-black rounded-md px-4 py-2">
-                Mark as Done
-              </button>
+              {done.some((item) => item.id === workout.id) ? (
+                <button
+                  className="bg-gray-600 text-white rounded-md px-4 py-2"
+                  disabled
+                >
+                  Done
+                </button>
+              ) : (
+                <button
+                  onClick={() => markAsDone(workout)}
+                  className="bg-lime-400 text-black rounded-md px-4 py-2"
+                >
+                  Mark as Done
+                </button>
+              )}
 
               {activeTab === "plan" && (
                 <button
