@@ -3,12 +3,13 @@
 import React, { useContext } from "react";
 import Image from "next/image";
 import Link from "next/link";
-
+import { usePathname } from "next/navigation";
 import logo from "@/public/assets/logo.png";
 import { WorkoutContext } from "@/context/WorkoutContext";
 
 export default function Navbar() {
   const { plan, saved } = useContext(WorkoutContext);
+  const pathname = usePathname();
 
   return (
     <section>
@@ -19,11 +20,19 @@ export default function Navbar() {
         </Link>
 
         <div className="flex items-center justify-center gap-4">
-          <div className="font-semibold">
+          <div
+            className={`font-semibold ${
+              pathname.startsWith("/workouts") ? "text-lime-400" : "text-white"
+            }`}
+          >
             <Link href="/workouts">Workouts</Link>
           </div>
 
-          <div>
+          <div
+            className={`font-semibold ${
+              pathname.startsWith("/my-plans") ? "text-lime-400" : "text-white"
+            }`}
+          >
             <Link href="/my-plans">My Plan</Link>
           </div>
         </div>
