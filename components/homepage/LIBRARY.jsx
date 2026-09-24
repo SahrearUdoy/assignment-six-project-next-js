@@ -11,7 +11,7 @@ export default async function Library() {
   const workoutDatas = await getWorkoutData();
 
   return (
-    <section>
+    <section id="library">
       <div className="container mx-auto mt-4 mb-4 pt-6">
         <h1 className="font-extrabold text-2xl mb-2">THE LIBRARY</h1>
         <p className="text-gray-400">

@@ -5,35 +5,43 @@ import Link from "next/link";
 export default function LibraryCard({ workoutData }) {
   return (
     <Link href={`/workouts/${workoutData.id}`}>
-      <section className="contaianer mx-auto my-auto">
-        <div className=" border-2 rounded-3xl border-black bg-gray-800 p-5 ">
+      <section className="mx-auto h-full">
+        <div className="h-full rounded-3xl border-2 border-black bg-gray-800 p-4 sm:p-5">
           {/* image */}
           <div>
             <Image
               src={workoutData.image}
               width={400}
               height={100}
-              className=""
+              className="h-auto w-full rounded-2xl object-cover"
+              alt={workoutData.name}
             />
           </div>
+
           {/* muscleGroups */}
-          <div className="flex gap-2 mt-4 mb-4">
+          <div className="mt-4 mb-4 flex flex-wrap gap-2">
             {workoutData.muscleGroups.map((muscle) => (
-              <span className="rounded-full bg-lime-500 px-3 py-1 text-sm text-black">
+              <span
+                key={muscle}
+                className="rounded-full bg-lime-500 px-3 py-1 text-sm text-black"
+              >
                 {muscle}
               </span>
             ))}
           </div>
+
           {/* name */}
-          <div className="font-bold text-2xl mb-3">{workoutData.name}</div>
+          <div className="mb-3 text-xl font-bold sm:text-2xl">
+            {workoutData.name}
+          </div>
+
           {/* equipment */}
-          <div className="text-gray-200  mb-4">{workoutData.equipment}</div>
-          {/* duration */}
-          <div className="border-t-2 border-gray-700  flex justify-between items-center">
-            <div className="gap-y-3">{workoutData.duration} min</div>
-            {/* caloriesBurned */}
+          <div className="mb-4 text-gray-200">{workoutData.equipment}</div>
+
+          {/* stats */}
+          <div className="flex items-center justify-between border-t-2 border-gray-700 pt-3 text-sm sm:text-base">
+            <div>{workoutData.duration} min</div>
             <div>{workoutData.caloriesBurned} kcal</div>
-            {/* rating */}
             <div>{workoutData.rating}</div>
           </div>
         </div>

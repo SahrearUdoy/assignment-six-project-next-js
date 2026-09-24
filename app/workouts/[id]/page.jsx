@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import AddToTodaysPlan from "@/components/workoutDetails/addToPlan";
 import SaveForLater from "@/components/workoutDetails/saveForLaterButton";
+import { notFound } from "next/navigation";
 
 const getWorkoutData = async () => {
   const res = await fetch("https://api.abcz.workers.dev/api/fitlog");
@@ -14,24 +15,36 @@ export default async function WorkoutDetailsPage({ params }) {
   const workoutDetailsData = await getWorkoutData();
   const workoutDetail = workoutDetailsData.find((detail) => detail.id == id);
 
-  return (
-    <div className="container mx-auto flex justify-between">
-      {/* left */}
+  if (!workoutDetail) {
+    notFound();
+  }
 
-      <div className="p-4">
-        <Image src={workoutDetail.image} width={400} height={300} />
+  return (
+    <div className="container mx-auto flex flex-col gap-6 px-4 py-6 md:flex-row md:justify-between">
+      {/* left */}
+      <div className="p-4 md:w-1/2">
+        <Image
+          src={workoutDetail.image}
+          width={400}
+          height={300}
+          className="w-full rounded-2xl object-cover"
+          alt={workoutDetail.name}
+        />
       </div>
 
       {/* Right */}
-      <div>
+      <div className="md:w-1/2">
         <h2>{workoutDetail.name}</h2>
 
         <p>{workoutDetail.description}</p>
 
         {/* muscleGroups */}
-        <div className="flex gap-2 mt-4 mb-4">
+        <div className="mt-4 mb-4 flex flex-wrap gap-2">
           {workoutDetail.muscleGroups.map((muscle) => (
-            <span className="rounded-full bg-lime-500 px-3 py-1 text-sm text-black">
+            <span
+              key={muscle}
+              className="rounded-full bg-lime-500 px-3 py-1 text-sm text-black"
+            >
               {muscle}
             </span>
           ))}
@@ -85,13 +98,13 @@ export default async function WorkoutDetailsPage({ params }) {
           </div>
 
           {/* buttons */}
-          <div className=" ">
+          <div className="flex flex-col gap-3 sm:flex-row">
             <AddToTodaysPlan workoutDetail={workoutDetail}></AddToTodaysPlan>
+
             <SaveForLater
               className="btn btn-soft"
               workoutDetail={workoutDetail}
             ></SaveForLater>
-            {/* <button className="btn btn-soft">Save for later</button> */}
           </div>
         </div>
       </div>

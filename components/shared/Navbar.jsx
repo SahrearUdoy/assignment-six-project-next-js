@@ -12,15 +12,13 @@ export default function Navbar() {
 
   return (
     <section>
-      <div className="flex justify-between border-b-2 border-gray-700 bg-black p-2">
-        {/* LOGO */}
+      <div className="flex flex-col gap-4 border-b-2 border-gray-700 bg-black p-4 md:flex-row md:items-center md:justify-between">
         <Link href="/" className="flex items-center gap-2">
           <Image src={logo} alt="Fitlog logo" />
           <h2 className="font-extrabold">FITLOG</h2>
         </Link>
 
-        {/* MIDDLE NAVIGATION */}
-        <div className="flex items-center justify-between gap-4">
+        <div className="flex items-center justify-center gap-4">
           <div className="font-semibold">
             <Link href="/workouts">Workouts</Link>
           </div>
@@ -30,8 +28,7 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* PLAN AND SAVED */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center justify-center gap-2">
           <Link href="/my-plans?tab=plan">
             <div className="rounded-full bg-lime-400 px-4 py-2 text-black">
               Plan {plan.length}

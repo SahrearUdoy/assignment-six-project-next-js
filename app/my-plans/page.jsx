@@ -127,7 +127,7 @@ export default function AddedPlan() {
         {workouts.map((workout) => (
           <div
             key={workout.id}
-            className="flex items-center justify-between rounded-2xl border border-gray-700 bg-gray-900 p-4"
+            className="flex flex-col gap-4 rounded-2xl border border-gray-700 bg-gray-900 p-4 md:flex-row md:items-center md:justify-between"
           >
             <div className="flex items-center gap-4">
               <img
@@ -138,29 +138,26 @@ export default function AddedPlan() {
 
               <div>
                 <h2 className="text-xl font-bold">{workout.name}</h2>
-
                 <p className="text-gray-400">{workout.equipment}</p>
 
-                <div className="flex gap-4 mt-3 text-sm text-gray-400">
+                <div className="mt-3 flex flex-wrap gap-4 text-sm text-gray-400">
                   <p>{workout.duration} min</p>
-
                   <p>{workout.caloriesBurned} kcal</p>
-
                   <p>{workout.rating}</p>
                 </div>
               </div>
             </div>
 
-            <div className="flex items-center gap-3">
+            <div className="flex flex-wrap items-center gap-3">
               <Link href={`/workouts/${workout.id}`}>
-                <button className="border border-gray-600 rounded-md px-4 py-2">
+                <button className="rounded-md border border-gray-600 px-4 py-2">
                   View Details
                 </button>
               </Link>
 
               {done.some((item) => item.id === workout.id) ? (
                 <button
-                  className="bg-gray-600 text-white rounded-md px-4 py-2"
+                  className="rounded-md bg-gray-600 px-4 py-2 text-white"
                   disabled
                 >
                   Done
@@ -168,7 +165,7 @@ export default function AddedPlan() {
               ) : (
                 <button
                   onClick={() => markAsDone(workout)}
-                  className="bg-lime-400 text-black rounded-md px-4 py-2"
+                  className="rounded-md bg-lime-400 px-4 py-2 text-black"
                 >
                   Mark as Done
                 </button>
@@ -177,7 +174,7 @@ export default function AddedPlan() {
               {activeTab === "plan" && (
                 <button
                   onClick={() => removeWorkout(workout.id)}
-                  className="text-xl px-2"
+                  className="px-2 text-xl"
                 >
                   ×
                 </button>
